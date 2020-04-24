@@ -1,0 +1,23 @@
+create database ThunderFighterDatabase;
+
+use ThunderFighterDatabase;
+
+create table accounts(
+id int auto_increment primary key,
+user_name char(20) unique,
+pass_word char(20),
+sign_up_date timestamp
+);
+
+create table scores(
+id int primary key,
+top_score int default 0,
+top_score_boss int default 0,
+foreign key(id) references accounts(id)
+);
+
+create table user_data(
+id int primary key,
+coins int default 1000,
+foreign key(id) references accounts(id)
+);

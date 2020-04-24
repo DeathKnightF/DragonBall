@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<context:component-scan base-package="Demo"></context:component-scan>
+	<context:property-placeholder location="dbconf.properties"/>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${user}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="jdbcUrl" value="${jdbcUrl}"></property>
+		<property name="driverClass" value="${driverClass}"></property>
+		<!-- <property name="maxPoolSize" value="${maxPoolSize}"></property>
+		<property name="minPoolSize" value="$(minPoolSize)"></property> -->
+	</bean>
+	
+	<!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	 		<constructor-arg name="dataSource" ref="dataSource"></constructor-arg>
+	 </bean> -->
+	 
+	 <!-- 1、配置事务管理器，让其进行事务控制 -->
+	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	 	<property name="dataSource" ref="dataSource"></property>
+	 </bean>
+	 <!-- 2\开启基于注解的事务控制模式 tx名称空间 -->
+	 <tx:annotation-driven transaction-manager="transactionManager"/>
+	 <!-- 3\给事务方法加注解 @transactional -->
+
+</beans>
