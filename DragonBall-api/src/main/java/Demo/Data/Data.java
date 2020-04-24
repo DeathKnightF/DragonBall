@@ -317,6 +317,10 @@ public final class Data {
 	 *  左按钮的水平坐标
 	 */
 	public static final int CHOOSE_PLAYER_PLANE_FRAME_TURN_LEFT_BUTTON_POSITION_X=0;
+	/**
+	 * choosePlayerPlaneFrame界面中
+	 *  右按钮的水平坐标
+	 */
 	public static  int CHOOSE_PLAYER_PLANE_FRAME_TURN_RIGHT_BUTTON_POSITION_X=WINDOW_WIDTH
 			-CHOOSE_PLAYER_PLANE_FRAME_TURN_BUTTON_WIDTH;
 	
